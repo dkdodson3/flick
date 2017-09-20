@@ -27,7 +27,7 @@ module Flick
     def create_flick_dirs
       Flick::System.setup_system_dir "#{Dir.home}/.flick"
       Flick::System.setup_system_dir flick_dir
-      message = %x(adb -s #{udid} shell 'mkdir #{dir_name}' > /dev/null 2>&1).split(":").last.strip rescue nil
+      message = %x(adb -s #{udid} shell 'mkdir #{dir_name}').split(":").last.strip rescue nil
       if message == "Read-only file system"
         puts "\nDevice: '#{udid}' is a 'Read-only file system'! Flick cannot write to the sdcard folder. Aborting...\n".red
         abort
