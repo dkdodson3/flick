@@ -7,6 +7,7 @@ require 'os'
 require 'tempfile'
 require 'sys/proctable'
 require 'apktools/apkxml'
+require 'open3'
 
 require "flick/version"
 require_relative "./flick/android"

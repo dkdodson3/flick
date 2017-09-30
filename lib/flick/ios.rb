@@ -23,10 +23,11 @@ module Flick
     end
     
     def is_paired?
-      Flick::Checker.system_dependency "idevicepair"
-      unless %x(idevicepair -u #{udid} pair).split[0] == "SUCCESS:"
+      Flick::Checker.system_dependency "idevicename"
+      if Open3.capture3("idevicename -u #{udid}")[1].split[0] == "ERROR:"
         puts "\nUDID: #{udid} - Is not paired with your machine!\nOr make sure the device is not locked!\n".red
-        puts "Run: idevicepair -u <udid> pair\nIf not working still, see: https://github.com/isonic1/flick/issues/10".red
+        puts "Run: idevicepair -u <udid> pair\nIf not working still, see: https://github.com/isonic1/flick/issues/10\n".red
+        puts "Read more information about libmobiledevice libraries, see: http://libimobiledevice.org".green
         abort
       end
     end

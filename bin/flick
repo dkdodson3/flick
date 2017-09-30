@@ -2,7 +2,7 @@
 require_relative '../lib/flick'
 require 'commander/import'
 
-program :version, '0.4.2'
+program :version, '0.4.3'
 program :description, 'A CLI to capture screenshots, video, logs, and device info for Android (Devices & Emulators) and iOS (Devices).'
 
 command :video do |c|
