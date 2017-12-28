@@ -5,7 +5,7 @@ class Screenshot
   def initialize options
     Flick::Checker.platform options[:platform]
     self.platform = options[:platform]
-    case @platform
+    case platform
     when "ios"
       options[:todir] = options[:outdir]
       self.driver = Flick::Ios.new options
@@ -16,9 +16,11 @@ class Screenshot
   end
 
   def screenshot
+    binding.pry
     puts "Saving to #{driver.outdir}/#{driver.name}.png"
     driver.screenshot driver.name
     driver.pull_file "#{driver.dir_name}/#{driver.name}.png", driver.outdir if android
+    return "#{driver.outdir}/#{driver.name}.png"
   end
 
   private
