@@ -134,7 +134,7 @@ Usage:
 		$ flick vitals -p android -n com.awsome-package.name
 
     $ flick applitools --help
-      $ flick flick applitools -p android --appName Twitter --testName Messages 
+      $ flick applitools -p android --appName Twitter --testName Messages 
 
 ##Demo
 <img src="https://www.dropbox.com/s/9be37gc1c2dlxa6/flick-demo.gif?raw=1" width="600">
