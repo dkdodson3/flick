@@ -91,7 +91,7 @@ Usage:
     screenshot Take a screenshot                
     video      Record video             
     vitals     Android Only! Get apps and device vitals - App Memory Used, App CPU %. System Stats: (User, System, IQW, IRQ)
-    applitools Validte image with Applitools 
+    applitools Validate images with Applitools 
 
     GLOBAL OPTIONS:
 

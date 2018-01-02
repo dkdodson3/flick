@@ -53,7 +53,7 @@ end
 
 command :applitools do |c|
   c.syntax = 'flick applitools [options]'
-  c.summary = 'Validte image with Applitools'
+  c.summary = 'Validate images with Applitools'
   c.description = c.summary
   c.example 'description', "flick applitools -p android --appName Twitter --testName Messages"
   c.option '-p', '--platform PLATFORM', String, 'Set platform: android or ios'
