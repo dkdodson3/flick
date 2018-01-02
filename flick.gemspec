@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", '~> 3.4', '>= 3.4.0'
   spec.add_dependency "parallel", '~> 1.6', '>= 1.6.2'
   spec.add_dependency "colorize", "~> 0.8.1"
-  spec.add_dependency "commander", '~> 4.4', '>= 4.4.0'
+  spec.add_dependency "commander"
   spec.add_dependency "json"
   spec.add_dependency "wannabe_bool", "~> 0.5.0"
   spec.add_dependency "awesome_print", '~> 1.6', '>= 1.6.1'

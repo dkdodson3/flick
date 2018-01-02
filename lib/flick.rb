@@ -8,8 +8,13 @@ require 'tempfile'
 require 'sys/proctable'
 require 'apktools/apkxml'
 require 'open3'
-require 'eyes_selenium'
+require 'eyes_images'
 require 'pry'
+require 'openssl'
+original_verbose = $VERBOSE
+$VERBOSE = nil
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+$VERBOSE = original_verbose
 
 require "flick/version"
 require_relative "./flick/android"

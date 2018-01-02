@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 require_relative '../lib/flick'
 require 'commander/import'
+require 'digest'
 
-program :version, '0.4.3'
+program :version, '0.4.4'
 program :description, 'A CLI to capture screenshots, video, logs, and device info for Android (Devices & Emulators) and iOS (Devices).'
 
 command :video do |c|
@@ -54,28 +55,55 @@ command :applitools do |c|
   c.syntax = 'flick applitools [options]'
   c.summary = 'Validte image with Applitools'
   c.description = c.summary
-  c.example 'description', 'flick applitools -p ios'
+  c.example 'description', "flick applitools -p android --appName Twitter --testName Messages"
   c.option '-p', '--platform PLATFORM', String, 'Set platform: android or ios'
   c.option '-u', '--udid UDID', String, 'Set device UDID.'
-  c.option '--AppName', String, "Set application name"
-  c.option '--testName', String, "Set test name"
-  c.option '--autoSave', String, "Automatically save failed tests."
-  c.option '--apiKey', String, "Applitools api key"
-  c.option '--logFile', String, "Specify Applitools log-file"
-  c.option '--matchLevel', String, "Set match level to one of 'strict, layout, or content'. Default: strict"
-  c.option '--server', String, "Set Applitools server url. Default: https://eyes.applitools.com"
-  
+  c.option '-o', '--outdir OUTDIR', String, "Set output directory. Default: #{Dir.pwd}"
+  c.option '-k', '--keep', "Keep image after capture. Default: false"
+  c.option '--appName appName', String, "Set your App Name. Example: --appName Twitter. Default is the platform value"
+  c.option '--testName testName', String, "Set Test Name. Example: --testName 'Home View'"
+  c.option '--autoSave autoSave', String, "Automatically save failed tests."
+  c.option '--apiKey apiKey', String, "Applitools API Key"
+  c.option '--showLogs showLogs', String, "Display Applitools Logs"
+  c.option '--matchLevel matchLevel', String, "Set match level to one of 'strict, layout, or content'. Default: strict"
+  c.option '--server Server', String, "Set Applitools server url. Default: https://eyes.applitools.com"
+  c.option '--proxy Proxy', String, "Set proxy address"
+  c.option '--baseline Baseline', String, "Set your baseline name"
+  c.option '--batchName BatchName', String, "Set your batch (folder) name"
+  c.option '--batchId BatchId', String, "Set a batch ID. Flick, by default creates a unique batch ID based on the platform and appName values"
+  #These will be added later...
   # c.option '--hostApp', String, "Set Host-app identifier for the screens under test"
   # c.option '--baseline', String, "Set baseline name"
   # c.option '--branch', String, "Set branch name"
   # c.option '--hostOs', String, "Set OS identifier for the screens under test"
-  # c.option '--proxy', String, "Set proxy address"
   # c.option '--parentBranch', String, "Set parent branch name, optional when working with branches"
   c.action do |args, options|
     options.default \
-    :matchLevel => :strict,
-    :server => 'https://eyes.applitools.com'
-    Applitools.new(options.default).screenshot
+    :outdir => Dir.pwd,
+    :keep => false,
+    :matchLevel => 'strict',
+    :server => 'https://eyes.applitools.com',
+    :showLogs => false,
+    :apiKey => ENV['APPLITOOLS_API_KEY'],
+    :appName => options.platform,
+    :baseline => nil,
+    :batchName => options.appName,
+    :batchId => Digest::MD5.hexdigest("#{options.platform.downcase}-#{options.appName.downcase}").scan(/\d/).join('')
+        
+    [:testName, :apiKey].each do |o|
+      if options.default[o].nil?
+        puts "\n--#{o.to_s} is required... Please set it before running!\n".red
+        abort
+      end
+    end
+    
+    match_levels = ['strict', 'layout', 'content']
+    unless match_levels.include? options.matchLevel
+      puts "You entered an incorrect match level. Please choose any of these: #{match_levels}"
+      abort
+    end
+
+    Applitoolz.new(options.default).upload_to_applitools
   end
 end
 

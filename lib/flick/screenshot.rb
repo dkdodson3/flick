@@ -16,11 +16,15 @@ class Screenshot
   end
 
   def screenshot
-    binding.pry
-    puts "Saving to #{driver.outdir}/#{driver.name}.png"
     driver.screenshot driver.name
     driver.pull_file "#{driver.dir_name}/#{driver.name}.png", driver.outdir if android
-    return "#{driver.outdir}/#{driver.name}.png"
+    if File.exists? "#{driver.outdir}/#{driver.name}.png"
+      puts "Saved image to: #{driver.outdir}/#{driver.name}.png" 
+      return { path: "#{driver.outdir}/#{driver.name}.png", udid: driver.udid }
+    else
+      puts "\nThere appears to be an issue capturing the #{platform} image. Run flick with --trace for more details.\n".red
+      abort
+    end
   end
 
   private
