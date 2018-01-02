@@ -90,7 +90,8 @@ Usage:
     manager    Manage apps on devices           
     screenshot Take a screenshot                
     video      Record video             
-    vitals     Android Only! Get apps and device vitals - App Memory Used, App CPU %. System Stats: (User, System, IQW, IRQ) 
+    vitals     Android Only! Get apps and device vitals - App Memory Used, App CPU %. System Stats: (User, System, IQW, IRQ)
+    applitools Validte image with Applitools 
 
     GLOBAL OPTIONS:
 
@@ -131,6 +132,9 @@ Usage:
 
 	 $ flick vitals --help
 		$ flick vitals -p android -n com.awsome-package.name
+
+    $ flick applitools --help
+      $ flick flick applitools -p android --appName Twitter --testName Messages 
 
 ##Demo
 <img src="https://www.dropbox.com/s/9be37gc1c2dlxa6/flick-demo.gif?raw=1" width="600">
