@@ -141,7 +141,7 @@ Usage:
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/isonic1/flick. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/isonic1/flick. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](https://github.com/isonic1/Appium-Native-Crawler/blob/master/CODE_OF_CONDUCT.md) code of conduct.
 
 ## TODO
 * Dry the code a bit.
