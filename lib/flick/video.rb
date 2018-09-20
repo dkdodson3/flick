@@ -144,7 +144,7 @@ class Video
 
   def convert_images_to_mp4
     remove_zero_byte_images
-    %x(ffmpeg -loglevel quiet -framerate #{rate} -pattern_type glob -i '#{driver.flick_dir}/screenshot-#{udid}*.png' -c:v libx264 -pix_fmt yuv420p #{driver.flick_dir}/#{driver.name}.mp4)
+    %x(ffmpeg -loglevel quiet -framerate #{rate} -pattern_type glob -i '#{driver.flick_dir}/screenshot-#{udid}*.png' -c:v libx264 -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" #{driver.flick_dir}/#{driver.name}.mp4)
   end
 
   def remove_zero_byte_images
