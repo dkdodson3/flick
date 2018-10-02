@@ -19,6 +19,8 @@ class Applitoolz
     batch_info = Applitools::BatchInfo.new(options[:batchName])
     batch_info.id = options[:batchId] #Date.today.to_time.to_i
     eyes.batch = batch_info
+    eyes.host_app = options[:hostApp]
+    eyes.host_os = options[:hostOs]
     self.keep = options[:keep]
   end
   
