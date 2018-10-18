@@ -12,7 +12,7 @@ Features
 * Save video formats in mp4 or gif.
 * Flick auto detects if a device is recordable.
 	* Falls back to screenshot recording if video record is not available.
-* Video record android emulators and **real** iOS devices.
+* Video record android emulators and **real** iOS devices/simulators.
 	* Takes a screenshot every 0.5 seconds (default), then combines the screenshots into a single mp4 or gif.
 	* Android pulls only unique (default) screenshots from devices/emulators. e.g. A 1 minute test run might convert to only 30 seconds of video based on unique images. You can change this by passing `-q false` to pull all images instead.
 	* iOS example [here](https://www.dropbox.com/s/4pjhhmnsx9gj5pi/ios-flick-example.mp4?dl=0)
@@ -146,7 +146,6 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/isonic
 ## TODO
 * Dry the code a bit.
 * Setup Flick android for cross platform os's (windows & linux)
-* Add screenshot capture for iOS Simulators.
 * Multithread the screenshot and pull process.
 * Look into capturing video for iOS similar to [this](https://github.com/mortenjust/androidtool-mac/blob/9347cd9aeca9e7370e323d12f862bc5d8beacc25/AndroidTool/IOSDeviceHelper.swift#L56)
 
